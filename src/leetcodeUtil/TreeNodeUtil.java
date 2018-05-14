@@ -37,14 +37,14 @@ public class TreeNodeUtil {
 	
 	public static <T> T[] tree2Array(TreeNode<T> root){
 		int size = treeNodesNumber(root); 
-	    T[] array = (T[])Array.newInstance(root.value.getClass(), size);
+	    T[] array = (T[])Array.newInstance(root.val.getClass(), size);
 	    array2List(root, 0, array);
 	    return array;
 	}
 	
 	public static <T> void array2List(TreeNode<T> root, int deep, T[] BSTarray){
 		if (root != null){
-			BSTarray[deep] = root.value;
+			BSTarray[deep] = root.val;
 			array2List(root.left, deep*2+1, BSTarray);
 			array2List(root.right, deep*2+2, BSTarray);
 		}
