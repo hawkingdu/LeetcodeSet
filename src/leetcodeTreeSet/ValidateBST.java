@@ -5,47 +5,38 @@ import leetcodeUtil.TreeNodeUtil;
 
 public class ValidateBST {
 	public static boolean isValidBST(TreeNode<Integer> root) {
-		boolean left=true, right=true;
-		if(root!=null){
-			if(root.left.val<root.val){
-				left = isValidBST(root.left, root.val);
-			} else {
-				left = false;
-			}
-			if(root.right.val>root.val){
-				right = isValidBST(root.right, root.val);
-			} else {
-				right = false;
-			}
-			return left && right ;
-		} else {
-			return true;
-		}
-        
+		if(root==null) return true;
+		return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
-	public static boolean isValidBST(TreeNode<Integer> root, int rootVal) {
-		boolean left=true, right=true;
-		
-		if(root.left!=null){
-			if(root.left.val<root.val && root.val<rootVal){
-				left = isValidBST(root.left, rootVal);
-			} else {
-                left = false;
-            }			 
+	public static boolean isValidBST(TreeNode<Integer> root, long min, long max) {
+		if(root==null) return true;
+		if(root.val>min && root.val<max){
+			return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
+		}else{
+			return false;
 		}
-		if(root.right!=null){
-			if(root.right.val>root.val && root.val>rootVal){
-				right = isValidBST(root.right, rootVal);
-			} else {
-                right = false;
-            }
-		}
-        return left && right;
     }
+	public static int prev = Integer.MIN_VALUE;
+	public static boolean isValidBSTInOrder(TreeNode<Integer> root){
+		if(root==null)return true;
+		if(isValidBSTInOrder(root.left) == false){
+			return false;
+		}
+		if(prev>=root.val){
+			return false;
+		}
+		prev = root.val;
+		if(isValidBSTInOrder(root.right) == false){
+			return false;
+		}
+		return true;
+	}
+	
 	public static void main(String[] args) {
 		Integer[] array = {3,1,5,0,2,4,6};
 		TreeNode<Integer> tree = TreeNodeUtil.array2Tree(array);
 		System.out.println(isValidBST(tree));
+		System.out.println(isValidBSTInOrder(tree));
 	}
 
 }
