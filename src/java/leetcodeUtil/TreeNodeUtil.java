@@ -1,7 +1,6 @@
-package leetcodeUtil;
+package java.leetcodeUtil;
 
-import entity.*;
-
+import java.entity.TreeNode;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -36,8 +35,9 @@ public class TreeNodeUtil {
 	}
 	
 	public static <T> T[] tree2Array(TreeNode<T> root){
-		int size = treeNodesNumber(root); 
-	    T[] array = (T[])Array.newInstance(root.val.getClass(), size);
+		int size = treeNodesNumber(root);
+	    @SuppressWarnings("unchecked")
+		T[] array = (T[])Array.newInstance(root.val.getClass(), size);
 	    array2List(root, 0, array);
 	    return array;
 	}

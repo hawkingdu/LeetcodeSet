@@ -1,6 +1,6 @@
-package linkedlistSet;
+package java.linkedlistSet;
 
-import entity.ListNode;
+import java.entity.ListNode;
 
 public class DeleteDuplicates {
 
