@@ -1,8 +1,9 @@
-package java.leetcodeUtil;
+package javacode.leetcodeUtil;
 
-import java.entity.TreeNode;
 import java.lang.reflect.Array;
 import java.util.*;
+
+import javacode.entity.TreeNode;
 
 public class TreeNodeUtil {
 

@@ -1,4 +1,4 @@
-package java.entity;
+package javacode.entity;
 
 public class ListNode<T> {
 	public T val;

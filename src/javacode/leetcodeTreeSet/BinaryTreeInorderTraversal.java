@@ -1,9 +1,10 @@
-package java.leetcodeTreeSet;
+package javacode.leetcodeTreeSet;
 
-import java.entity.TreeNode;
-import java.leetcodeUtil.TreeNodeUtil;
 import java.util.ArrayList;
 import java.util.List;
+
+import javacode.entity.TreeNode;
+import javacode.leetcodeUtil.TreeNodeUtil;
 
 /**
  * Leetcode 94

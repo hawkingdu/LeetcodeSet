@@ -1,6 +1,6 @@
-package java.linkedlistSet;
+package javacode.linkedlistSet;
 
-import java.entity.ListNode;
+import javacode.entity.ListNode;
 
 public class HasCycle {
 

@@ -1,7 +1,7 @@
-package java.leetcodeTreeSet;
+package javacode.leetcodeTreeSet;
 
-import java.entity.TreeNode;
-import java.leetcodeUtil.TreeNodeUtil;
+import javacode.entity.TreeNode;
+import javacode.leetcodeUtil.TreeNodeUtil;
 
 /**
  * 98. Validate Binary Search Tree

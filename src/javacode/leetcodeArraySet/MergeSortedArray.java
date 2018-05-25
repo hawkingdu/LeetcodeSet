@@ -1,4 +1,4 @@
-package java.leetcodeArraySet;
+package javacode.leetcodeArraySet;
 
 public class MergeSortedArray {
 	

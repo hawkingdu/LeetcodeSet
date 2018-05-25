@@ -1,4 +1,4 @@
-package java.entity;
+package javacode.entity;
 
 public class TreeNode<T> {
 	public T val;
