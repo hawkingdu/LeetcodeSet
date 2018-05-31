@@ -12,7 +12,7 @@ package javacode.leetcodeArraySet;
 public class MaximumProductSubarray {
 
 	public int maxProduct(int[] nums) {
-		int max = nums[0], max_end=nums[0];
+		int max = nums[0], max_end=nums[0], max_end_nag=0;
 		if(nums.length>1){
 			for(int i=1; i<nums.length; i++){
 				
