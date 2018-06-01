@@ -50,12 +50,7 @@ public class RomanToInteger {
 	public static void main(String[] args) {
 		RomanToInteger rti = new RomanToInteger();
 		System.out.println(rti.romanToInt("IV"));
-		String s = "abc";
-		char[] chars = new char[s.length()];
-		s.getChars(0, s.length(), chars, 0);
-		for(char c : chars){
-			System.out.println(c);
-		}
+
 	}
 
 }
