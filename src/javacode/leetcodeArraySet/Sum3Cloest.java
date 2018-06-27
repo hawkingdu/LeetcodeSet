@@ -44,6 +44,14 @@ public class Sum3Cloest {
 		return result;
     }
 
+	public Object M(){
+		Object o = new Float(3.14f);
+		Object[] oa = new Object[1];
+		oa[0] = o;
+		o = null;
+		oa[0] = null;
+		return o;
+	}
 	public static void main(String[] args) {
 		Sum3Cloest sum = new Sum3Cloest();
 		int[] nums = {-1, 2, 1, -4};
