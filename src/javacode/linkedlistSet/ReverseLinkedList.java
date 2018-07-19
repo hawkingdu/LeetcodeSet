@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class ReverseLinkedList {
 
-	public ListNode<Integer> reverseList(ListNode<Integer> head) {
+	public static ListNode<Integer> reverseList(ListNode<Integer> head) {
 		ListNode<Integer> newHead = new ListNode<>();
 		ListNode<Integer> temp = newHead;
 		List<Integer> list = new ArrayList<>();
@@ -30,8 +30,9 @@ public class ReverseLinkedList {
         return newHead.next;
     }
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 
 	}
-
+	
 }
+
