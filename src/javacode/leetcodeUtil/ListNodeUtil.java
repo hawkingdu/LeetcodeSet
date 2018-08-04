@@ -17,6 +17,14 @@ public class ListNodeUtil {
 		
 		return head.next;
 	}
+	
+	public static <T> void printListNode(ListNode<T> head){
+		while(head!=null){
+			System.out.print(head.val + " -> ");
+			head = head.next;
+		}
+		System.out.println("");
+	}
 	public static void main(String[] args) {
 		Integer[] nums = {1,2,3};
 		ListNode<Integer> head = arrayToListNode(nums);

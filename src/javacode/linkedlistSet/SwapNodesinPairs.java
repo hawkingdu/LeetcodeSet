@@ -1,6 +1,7 @@
 package javacode.linkedlistSet;
 
 import javacode.entity.ListNode;
+import javacode.leetcodeUtil.ListNodeUtil;
 
 /**
  * 24. Swap Nodes in Pairs
@@ -14,24 +15,28 @@ public class SwapNodesinPairs {
 
 	public ListNode<Integer> swapPairs(ListNode<Integer> head) {
 		if(head==null || head.next ==null) return head;
-		ListNode<Integer> temp = null;
-		if(head.next.next==null){
-			temp = head.next;
-			head.next =null;
-			return temp;
+		ListNode<Integer> t1=head, t2=head.next;
+		while(t1!=null && t2!=null){
+			ListNode<Integer> tempNode = new ListNode<Integer>(t1.val);
+			tempNode.next = t2.next;
+			t1.val = t2.val;
+			t1.next = tempNode;
+			t1 = tempNode.next;
+			if(t1!=null){
+				t2 = t1.next;
+			}
 		}
-		ListNode<Integer> temp1 = head, temp2 = head.next;
-		while(temp2!=null){
-			temp = temp2.next;
-			temp2.next = temp1;
-			temp1.next = temp;
-			temp1 = temp;
-			temp2 = temp.next;
-		}
-        return head.next;
+        return head;
     }
 	
 	public static void main(String[] args) {
+		Integer[] array = {1,2,3,4,5};
+		SwapNodesinPairs swap = new SwapNodesinPairs();
+		ListNode<Integer> list = ListNodeUtil.arrayToListNode(array);
+		ListNodeUtil.printListNode(list);
+		ListNode<Integer> newList = swap.swapPairs(list);
+		ListNodeUtil.printListNode(newList);
+		
 	}
 
 }
