@@ -1,9 +1,7 @@
 package javacode.leetcodeStringSet;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 17. Letter Combinations of a Phone Number
@@ -13,40 +11,34 @@ import java.util.Map;
  * Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
  */
 public class LetterCombinationsofPhoneNumber {
-    private static Map<Character, List<Character>> map = new HashMap<>();
-    static{
-        map.put('2', Arrays.asList('a', 'b', 'c'));
-        map.put('3', Arrays.asList('d', 'e', 'f'));
-        map.put('4', Arrays.asList('g', 'h', 'i'));
-        map.put('5', Arrays.asList('j', 'k', 'l'));
-        map.put('6', Arrays.asList('m', 'n', 'o'));
-        map.put('7', Arrays.asList('p', 'q', 'r', 's'));
-        map.put('8', Arrays.asList('t', 'u', 'v'));
-        map.put('9', Arrays.asList('w', 'x', 'y', 'z'));
-    }
-    private static List<Character> numToAlpha(char c){
-        return map.get(c);
-    }
+    private static String[] maps = {"", "", "abc", "def", "ghj", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+   
+
     public List<String> letterCombinations(String digits) {
-
-
-
-        return null;
+    	List<String> result = new ArrayList<>();
+    	if(digits!=null && digits.length()>0){
+    		dfs(result, "", digits, 0, maps);
+    	}
+        return result;
     }
 
-    public void dfs(List<String> result, String e, String digits, Map<Character, List<Character>> map){
-        if( !result.contains(e) ){
-            result.add(e);
+    public void dfs(List<String> result, String subStr, String digits, int index, String[] maps){
+    	if( index == digits.length() ){
+            result.add(subStr);
+            return;
         } else {
-
-            for( int i=0; i < digits.length(); i++){
-
+            for( char c : maps[digits.charAt(index)-'0'].toCharArray()){
+            	subStr += String.valueOf(c);
+            	dfs(result, subStr, digits, index+1, maps);
+            	subStr = subStr.substring(0, subStr.length()-1);
             }
         }
     }
 
 
     public static void main(String[] args) {
-
+    	LetterCombinationsofPhoneNumber combin = new LetterCombinationsofPhoneNumber();
+    	List<String> result = combin.letterCombinations("23");
+    	System.out.println(result);
     }
 }
