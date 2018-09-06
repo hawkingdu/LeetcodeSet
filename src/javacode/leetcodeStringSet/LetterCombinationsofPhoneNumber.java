@@ -31,7 +31,7 @@ public class LetterCombinationsofPhoneNumber {
             	dfs(result, subStr+c, digits, index+1);
             }
         }
-    }git
+    }
 
     public static void main(String[] args) {
     	LetterCombinationsofPhoneNumber combin = new LetterCombinationsofPhoneNumber();
