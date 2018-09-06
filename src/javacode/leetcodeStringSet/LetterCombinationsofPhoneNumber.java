@@ -1,6 +1,7 @@
 package javacode.leetcodeStringSet;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -12,29 +13,25 @@ import java.util.List;
  */
 public class LetterCombinationsofPhoneNumber {
     private static String[] maps = {"", "", "abc", "def", "ghj", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-   
 
     public List<String> letterCombinations(String digits) {
     	List<String> result = new ArrayList<>();
     	if(digits!=null && digits.length()>0){
-    		dfs(result, "", digits, 0, maps);
+    		dfs(result, "", digits, 0);
     	}
         return result;
     }
 
-    public void dfs(List<String> result, String subStr, String digits, int index, String[] maps){
+    public void dfs(List<String> result, String subStr, String digits, int index){
     	if( index == digits.length() ){
             result.add(subStr);
             return;
         } else {
             for( char c : maps[digits.charAt(index)-'0'].toCharArray()){
-            	subStr += String.valueOf(c);
-            	dfs(result, subStr, digits, index+1, maps);
-            	subStr = subStr.substring(0, subStr.length()-1);
+            	dfs(result, subStr+c, digits, index+1);
             }
         }
-    }
-
+    }git
 
     public static void main(String[] args) {
     	LetterCombinationsofPhoneNumber combin = new LetterCombinationsofPhoneNumber();
