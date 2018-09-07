@@ -43,7 +43,7 @@ public class TreeNodeUtil {
 	    return array;
 	}
 	
-	public static <T> void array2List(TreeNode<T> root, int deep, T[] BSTarray){
+	private static <T> void array2List(TreeNode<T> root, int deep, T[] BSTarray){
 		if (root != null){
 			BSTarray[deep] = root.val;
 			array2List(root.left, deep*2+1, BSTarray);

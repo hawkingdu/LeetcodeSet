@@ -3,6 +3,7 @@ package javacode.leetcodeStringSet;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * 17. Letter Combinations of a Phone Number
@@ -33,9 +34,35 @@ public class LetterCombinationsofPhoneNumber {
         }
     }
 
+    /**
+     * This approach is based on BFS algorithm
+     * For example as input "23"
+     * Initial round queue: ""
+     * first round queue: "a" "b" "c"
+     * second round queue: ad, ae, af, bd, be, bf, cd, ce, cf
+     * @param digits
+     * @return
+     */
+    public List<String> letterCombinationsWithBFS(String digits){
+        LinkedList<String> queue = new LinkedList<>();
+        if(digits==null || digits.length()==0) return queue;
+        queue.add("");
+        for(int i=0; i<digits.length(); i++){
+            int n = Character.getNumericValue(digits.charAt(i));
+            String subStr = maps[n];
+            while (queue.peek().length()==i){
+                String last = queue.poll();
+                for(char c: subStr.toCharArray()){
+                    queue.add(last+c);
+                }
+            }
+        }
+        return queue;
+    }
+
     public static void main(String[] args) {
     	LetterCombinationsofPhoneNumber combin = new LetterCombinationsofPhoneNumber();
-    	List<String> result = combin.letterCombinations("23");
+    	List<String> result = combin.letterCombinationsWithBFS("23");
     	System.out.println(result);
     }
 }
