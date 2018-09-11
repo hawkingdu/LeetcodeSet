@@ -4,7 +4,9 @@ import javacode.entity.TreeNode;
 import javacode.leetcodeUtil.TreeNodeUtil;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  *  101. Symmetric Tree
@@ -20,41 +22,63 @@ import java.util.List;
 public class SymmetricTree {
 
     public boolean isSymmetric(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        if(root==null) return true;
-        inOrderTraversal(root, list);
-        for(int i=0, j=list.size()-1; i<=j; i++, j--){
-            if(list.get(i)!=list.get(j)){
+//        if(root!=null && (root.left!=null || root.right!=null)) {
+//            return isSymmetric(root.left, root.right);
+//        }
+//        return true;
+
+        return isSymmetricWithQueue(root);
+    }
+
+    /**
+     * recursive algorithm
+     * Symmetrical conditions are left.left == right.right && left.right == right.left
+     */
+    private boolean isSymmetric(TreeNode left, TreeNode right){
+        if(left==null && right==null) {
+                return true;
+        } else {
+            if(left ==null || right == null){
                 return false;
             }
+        }
+        if(left.val != right.val) return false;
+        return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+    }
+
+    public boolean isSymmetricWithQueue(TreeNode node){
+        Queue<TreeNode> queue = new LinkedList<>();
+        if(node!=null){
+            if(node.left==null && node.right==null){
+                return true;
+            } else if(node.left != null && node.right!=null){
+                queue.offer(node.right);
+                queue.offer(node.left);
+            } else
+                return false;
+        }
+        while (!queue.isEmpty()){
+            TreeNode left = queue.poll();
+            TreeNode right = queue.poll();
+            if(left==null && right==null) continue;
+            if(left==null || right==null) return false;
+            if(left.val!=right.val){
+                return false;
+            }
+            queue.offer(left.left);
+            queue.offer(right.right);
+            queue.offer(left.right);
+            queue.offer(right.left);
+
         }
         return true;
     }
 
-    private void inOrderTraversal(TreeNode<Integer> node, List<Integer> result ){
-        if (node.left!=null) {
-            inOrderTraversal(node.left, result);
-        }
-            result.add(node.val);
-        if (node.right!=null) {
-            inOrderTraversal(node.right, result);
-        }
-    }
 
     public static void main(String[] args) {
         SymmetricTree st =new SymmetricTree();
-        Integer[] nums2 = {1,2,3,3,null,2,null};
+        Integer[] nums2 = {1,2,2};
         TreeNode<Integer> node = TreeNodeUtil.array2Tree(nums2);
-        List<Integer> result = new ArrayList<>();
-        st.inOrderTraversal(node, result);
-        System.out.println(result.toString());
         System.out.println(st.isSymmetric(node));
     }
 }
-
-class TreeNode2 {
-      int val;
-      TreeNode2 left;
-      TreeNode2 right;
-      TreeNode2(int x) { val = x; }
-  }
