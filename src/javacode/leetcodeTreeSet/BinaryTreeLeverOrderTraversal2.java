@@ -6,7 +6,6 @@ import javacode.leetcodeUtil.TreeNodeUtil;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
 
 /**
  * 107. Binary Tree Level Order Traversal II
@@ -25,21 +24,22 @@ import java.util.Stack;
  * ]
  */
 public class BinaryTreeLeverOrderTraversal2{
-    public List<List<Integer>> levelOrderBottom(TreeNode<Integer> root) {
-        Queue<TreeNode<Integer>> queue = new LinkedList<>();
-        List<List<Integer>> result = new LinkedList<>();
-
-        if(root ==null )  return result;
-        queue.offer(root);
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        LinkedList<List<Integer>> result = new LinkedList<>();
+        List<Integer> subList;
+        if(root!=null){
+            queue.offer(root);
+        }
         while (!queue.isEmpty()){
-            int levelIdx = queue.size();
-            List<Integer> subList = new LinkedList<>();
-            for (int i=0; i<levelIdx; i++) {
+            int levelNums = queue.size();
+            subList = new LinkedList<>();
+            for (int i = 0; i < levelNums; i++) {
                 if(queue.peek().left!=null) queue.offer(queue.peek().left);
-                if(queue.peek().right!=null) queue.offer(queue.peek().right);
-                subList.add(queue.poll().val);
+                if(queue.peek().right!=null)queue.offer(queue.peek().right);
+                subList.add((Integer)queue.poll().val);
             }
-            result.add(0, subList);
+            result.addFirst(subList);
         }
         return result;
     }
