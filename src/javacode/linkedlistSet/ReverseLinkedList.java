@@ -1,6 +1,8 @@
 package javacode.linkedlistSet;
 
 import javacode.entity.ListNode;
+import javacode.leetcodeUtil.ListNodeUtil;
+
 import java.util.*;
 
 /**
@@ -12,6 +14,11 @@ import java.util.*;
  */
 public class ReverseLinkedList {
 
+	/**
+	 * 空间复杂度+1
+	 * @param head
+	 * @return
+	 */
 	public static ListNode<Integer> reverseList(ListNode<Integer> head) {
 		ListNode<Integer> newHead = new ListNode<>();
 		ListNode<Integer> temp = newHead;
@@ -29,9 +36,39 @@ public class ReverseLinkedList {
 		}
         return newHead.next;
     }
+
+	/**
+	 * 空间复杂度优于上面那一种
+	 *
+	 * @param input
+	 * @return
+	 */
+	public static ListNode<Integer> reverse(ListNode<Integer> input) {
+		// 新链表头
+		ListNode<Integer> newHead = null;
+		// 旧链表头
+		ListNode<Integer> oldHead = input;
+		if (input != null) {
+			if (input.next != null) {
+				while (oldHead != null) {
+					ListNode node = oldHead; //遍历的当前节点
+					oldHead = oldHead.next; // 旧链表头后移
+					node.next = newHead; // 当前节点指向新链表头
+					newHead = node; // 当前节点作为新链表头
+				}
+				return newHead;
+			} else {
+				return input;
+			}
+		} else {
+			return null;
+		}
+	}
 	public static void main(String[] args) {
-
-
+		Integer[] nums = new Integer[]{1,2,3,4,5,6,7};
+		ListNode<Integer> node = ListNodeUtil.arrayToListNode(nums);
+		ListNodeUtil.printListNode(node);
+		ListNodeUtil.printListNode(reverse(node));
 	}
 	
 }

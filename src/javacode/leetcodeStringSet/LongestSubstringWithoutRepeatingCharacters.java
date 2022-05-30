@@ -1,8 +1,6 @@
 package javacode.leetcodeStringSet;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 3. Longest Substring Without Repeating Characters
@@ -19,6 +17,8 @@ public class LongestSubstringWithoutRepeatingCharacters {
 	public int lengthOfLongestSubstring(String s) {
 		int so_far_len = 0;
 		StringBuilder sb = new StringBuilder();
+		// 筛选用，降低时间复杂度
+		Set<Character> set = new HashSet<>();
 		for(int i=0; i<s.length(); i++){
 			if( sb.indexOf(String.valueOf(s.charAt(i))) >=0 ){
 				sb = new StringBuilder(sb.substring(sb.indexOf(String.valueOf(s.charAt(i)))+1));
@@ -31,11 +31,35 @@ public class LongestSubstringWithoutRepeatingCharacters {
 		}
 		return so_far_len;
     }
+
+	/**
+	 * 滑动窗口，双指针法
+	 * @param s
+	 * @return
+	 */
+	public int solution(String s){
+		int maxLength = 0;
+		// 记录上一次数组坐标
+		Map<Character, Integer> charPos = new HashMap<>();
+		// 左右边界
+		int left = -1, right = 0;
+		int size = s.length();
+		for (; right < size; right++) {
+			char c = s.charAt(right);
+			if (charPos.containsKey(c)) {
+				left = Math.max(charPos.get(c), left);//移动左边界
+			}
+			charPos.put(c, right); //记录坐标
+			maxLength = Math.max(maxLength, right - left);
+		}
+		return maxLength;
+	}
+
 	public static void main(String[] args) {
 		LongestSubstringWithoutRepeatingCharacters ls = new LongestSubstringWithoutRepeatingCharacters();
 		StringBuilder sb = new StringBuilder();
-		String s = "bbbb";
-		int len = ls.lengthOfLongestSubstring(s);
+		String s = "abba";
+		int len = ls.solution(s);
 		System.out.println(len);
 //		sb.append("b");
 //		sb = new StringBuilder(sb.substring(1));
