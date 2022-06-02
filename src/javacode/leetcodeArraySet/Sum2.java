@@ -1,6 +1,8 @@
 package javacode.leetcodeArraySet;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 /**
@@ -15,25 +17,28 @@ import java.util.stream.IntStream;
 public class Sum2 {
 
 	public int[] twoSum(int[] nums, int target) {
-		Arrays.sort(nums);
-		int lo=0, hi=nums.length-1;
-		int[] result = new int[2];
-		while(hi>lo){
-			if(nums[lo]+nums[hi] == target){
-				result[0]=lo;
-				result[1]=hi;
-				break;
-			} else if(nums[lo] + nums[hi] > target) {
-				hi--;
-			} else {
-				lo++;
+		for (int i = 0; i < nums.length; i++) {
+			int a = nums[i];
+			for (int j = i+1; j < nums.length; j++) {
+				int b = nums[j];
+				if ((a+b) == target) {
+					return new int[]{i,j};
+				}
 			}
 		}
-        return result;
+		return new int[]{-1};
     }
-	
+
 	public int[] twoSumWithMap(int[] nums, int target) {
-		
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			int a = nums[i];
+			Integer j = map.get(target - a);
+			if (j != null) {
+				return new int[]{i,j};
+			}
+			map.put(a, i);
+		}
         return null;
     }
 	public static void main(String[] args) {
@@ -42,7 +47,8 @@ public class Sum2 {
 		for(int i :sum.twoSum(nums, 7)){
 			System.out.println(i);
 		}
-		IntStream.of(sum.twoSum(nums, 7)).forEach(System.out::print);
+		int[] nums2 = {3,4,2};
+		IntStream.of(sum.twoSumWithMap(nums2, 6)).forEach(System.out::print);
 
 	}
 

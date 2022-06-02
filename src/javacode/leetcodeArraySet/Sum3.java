@@ -1,6 +1,7 @@
 package javacode.leetcodeArraySet;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 15. 3Sum
@@ -16,36 +17,47 @@ import java.util.*;
 public class Sum3 {
 
 	/**
-	 * 1. Sort integer array
-	 * 2. loop array, each element is first element, then make bi-directional 2Sum sweep in remaining of array
-	 * 3. Record qualified element, if next element is equal that, move to next
+	 * 1. 先把数组排序
+	 * 2. 依次遍历数据，每一个元素为a, 在剩下的数组里找b+c，利用左右指针法
+	 * 3. 保存符合条件的组合，相同数值往后推
 	 */
 	public List<List<Integer>> threeSum(int[] nums) {
 		List<List<Integer>> result = new LinkedList<>();
-		if(nums.length<3) return result;
 		Arrays.sort(nums);
-		int lo, hi, sum, temphi, templo;
-		for(int i=0; i<nums.length-2; i++){
-			sum = 0 - nums[i];
-			lo=i+1;
-			hi=nums.length-1;
-			while(hi>lo){
-				if(nums[lo] + nums[hi] == sum){
-					result.add(Arrays.asList(nums[i], nums[lo], nums[hi]));
-					temphi = hi;
-					templo = lo;
-					hi--;
-					while(hi>lo && nums[hi]==nums[temphi])hi--;
-					lo++;
-					while(hi>lo && nums[lo]==nums[templo])lo++;
-				} else if(nums[lo] + nums[hi] > sum){
-					hi--;
+		if(nums.length<3) {
+			return result;
+		}
+		if (nums[0] > 0) {
+			return result;
+		}
+		// 定义左右指针
+		int right, left, target;
+		for (int i = 0; i < nums.length - 1; i++) {
+			if(i>0 && nums[i]==nums[i-1]){
+				// 数字相同继续后移
+				continue;
+			}
+			int a = nums[i]; // 当前a 的数值
+			target = -a; // b+c 的数值
+			left = i+1; // 遍历左指针
+			right = nums.length-1; // 右指针
+			while (right > left) {
+				if (nums[right] + nums[left] == target) {
+					result.add(Arrays.asList(a, nums[right], nums[left]));
+					right--;
+					left++;
+					while (right > left && nums[right] == nums[right+1]){
+						right--;
+					}
+					while (right > left && nums[left] == nums[left - 1]) {
+						left++;
+					}
+				} else if (nums[right] + nums[left] < target) {
+					left++;
 				} else {
-					lo++;
+					right--;
 				}
 			}
-			while(i<nums.length-2 && nums[i]==nums[i+1])i++;
-			if(nums[i]>0) break;
 		}
 		return result;
     }
@@ -72,6 +84,8 @@ public class Sum3 {
 		}
 		return result;
 	}
+
+
 	public static void main(String[] args) {
 		int[] nums = new int[]{-2,0,1,1,2};
 		Sum3 sum = new Sum3();

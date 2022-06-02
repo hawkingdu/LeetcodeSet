@@ -2,6 +2,10 @@ package javacode.linkedlistSet;
 
 import javacode.entity.ListNode;
 
+/**
+ * 141. Linked List Cycle
+ *
+ */
 public class HasCycle {
 
 	public static boolean hasCycle(ListNode head){
