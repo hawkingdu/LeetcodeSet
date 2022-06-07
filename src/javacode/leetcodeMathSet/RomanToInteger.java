@@ -1,7 +1,9 @@
 package javacode.leetcodeMathSet;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 
@@ -38,18 +40,28 @@ public class RomanToInteger {
 		romanIntMap.put('D', 500 );
 		romanIntMap.put('M', 1000);
 		int result = romanIntMap.get(s.charAt(s.length()-1));
-		for(int i=s.length()-2; i>=0; i--){
-			if (romanIntMap.get(s.charAt(i)) < romanIntMap.get(s.charAt(i+1))){
-				result = result - romanIntMap.get(s.charAt(i));
+		for (int i = s.length()-2; i >=0; i--) {
+			Integer num = romanIntMap.get(s.charAt(i));
+			if (num< romanIntMap.get(s.charAt(i+1))){
+				result -= num;
 			} else {
-				result += romanIntMap.get(s.charAt(i));
+				result += num;
 			}
 		}
 		return result;
     }
 	public static void main(String[] args) {
-		RomanToInteger rti = new RomanToInteger();
-		System.out.println(rti.romanToInt("IV"));
+		int[] nums = new int[]{3,3};
+		Set<Integer> set = new HashSet<>();
+		for(int i=0; i< nums.length; i++){
+			if(set.contains(nums[i])){
+				System.out.println(true);
+				break;
+			} else {
+				set.add(i);
+			}
+		}
+		System.out.println(false);
 
 	}
 

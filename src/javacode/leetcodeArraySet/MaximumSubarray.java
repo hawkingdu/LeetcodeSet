@@ -29,7 +29,7 @@ public class MaximumSubarray {
 	/**
 	 * Complexity O(n)
 	 * 
-	 * Kadane algorithm
+	 * 贪心算法
 	 * step 1 get end with nums[i] max sum value between
 	 * step 2 compare end with nums[i] and end with nums[i-1] sum  
 	 * 

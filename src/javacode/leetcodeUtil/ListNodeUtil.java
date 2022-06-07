@@ -25,6 +25,20 @@ public class ListNodeUtil {
 		}
 		System.out.println("");
 	}
+
+	public static String listNodeToString(ListNode node) {
+		if (node == null) {
+			return "[]";
+		}
+
+		String result = "";
+		while (node != null) {
+			result += String.valueOf(node.val) + ", ";
+			node = node.next;
+		}
+		return "[" + result.substring(0, result.length() - 2) + "]";
+	}
+
 	public static void main(String[] args) {
 		Integer[] nums = {1,2,3};
 		ListNode<Integer> head = arrayToListNode(nums);
