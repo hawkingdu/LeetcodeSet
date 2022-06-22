@@ -1,5 +1,7 @@
 package javacode.leetcodeArraySet;
 
+import java.util.Arrays;
+
 /**
  * 121. Best Time to Buy and Sell Stock
  * 
@@ -40,11 +42,25 @@ public class BestTimeToBuySellStock {
 		}
 		return maxProfit;
 	}
+	
+	public int maxProfit3(int[] prices) {
+		int max = 0, buy=prices[0];
+		for (int i = 1; i < prices.length; i++) {
+			if (prices[i] < buy) {
+				buy = prices[i];
+			} else {
+				max = Math.max(prices[i] - buy, max);
+			}
+		}
+		return max;
+	}
 	public static void main(String[] args) {
 		BestTimeToBuySellStock buySell = new BestTimeToBuySellStock();
-		int[] prices = {7,1,5,3,6,4};
-		System.out.println(buySell.maxProfit2(prices));
+		int[] prices = {7,6,5,4};
+		System.out.println(buySell.maxProfit3(prices));
 
 	}
+
+
 
 }

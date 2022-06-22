@@ -8,7 +8,9 @@ import javacode.entity.TreeNode;
 public class TreeNodeUtil {
 
 	public static <T> TreeNode<T> array2Tree(T[] array){
-		if(array.length ==0) return null;
+		if(array.length ==0){
+			return null;
+		}
 		List<TreeNode<T>> nodeList = new ArrayList<TreeNode<T>>();
 		for(T t: array){
 			nodeList.add(new TreeNode<T>(t));

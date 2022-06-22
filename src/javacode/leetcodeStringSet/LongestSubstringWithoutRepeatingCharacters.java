@@ -47,6 +47,9 @@ public class LongestSubstringWithoutRepeatingCharacters {
 		for (; right < size; right++) {
 			char c = s.charAt(right);
 			if (charPos.containsKey(c)) {
+				/**
+				 * 解决 abbccxya的情况，left不能发生回退
+				 */
 				left = Math.max(charPos.get(c), left);//移动左边界
 			}
 			charPos.put(c, right); //记录坐标
@@ -58,8 +61,8 @@ public class LongestSubstringWithoutRepeatingCharacters {
 	public static void main(String[] args) {
 		LongestSubstringWithoutRepeatingCharacters ls = new LongestSubstringWithoutRepeatingCharacters();
 		StringBuilder sb = new StringBuilder();
-		String s = "abba";
-		int len = ls.solution(s);
+		String s = "axbbccxyaafa";
+		int len = ls.lengthOfLongestSubstring(s);
 		System.out.println(len);
 //		sb.append("b");
 //		sb = new StringBuilder(sb.substring(1));

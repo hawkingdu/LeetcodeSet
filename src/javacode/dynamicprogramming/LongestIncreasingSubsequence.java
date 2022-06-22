@@ -67,4 +67,36 @@ public class LongestIncreasingSubsequence {
         int res = subsequence.lengthOfLIS(nums);
         System.out.println(res);
     }
+
+
+    public int lengthOfLIS2(int[] nums) {
+        int max = 0;
+        int[] dp = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > nums[i - 1]) {
+                dp[i] = dp[i-1] + 1;
+            } else {
+                dp[i] = 0;
+            }
+        }
+        return max;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

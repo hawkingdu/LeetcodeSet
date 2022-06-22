@@ -1,10 +1,7 @@
-package javacode.multipoints;
+package javacode.twoPoints;
 
 import javacode.entity.ListNode;
 import javacode.leetcodeUtil.ListNodeUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 19. 删除链表的倒数第 N 个结点

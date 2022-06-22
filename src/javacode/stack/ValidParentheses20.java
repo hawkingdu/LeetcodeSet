@@ -1,4 +1,4 @@
-package javacode;
+package javacode.stack;
 
 import java.util.*;
 
