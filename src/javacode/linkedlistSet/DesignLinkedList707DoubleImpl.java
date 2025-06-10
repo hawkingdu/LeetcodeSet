@@ -1,5 +1,7 @@
 package javacode.linkedlistSet;
 
+import java.util.HashSet;
+
 public class DesignLinkedList707DoubleImpl {
 
     DoublyNode head;

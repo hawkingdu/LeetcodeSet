@@ -10,4 +10,15 @@ public class ListNode<T> {
 	public ListNode(T val) {
 		this.val = val;
 	}
+
+	@Override
+	public String toString() {
+		ListNode head = this;
+		String s = null;
+		while(head!=null){
+			s = next.val +"->";
+			head = head.next;
+		}
+		return "Linked List: " + s;
+	}
 }

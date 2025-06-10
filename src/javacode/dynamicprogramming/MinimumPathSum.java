@@ -52,11 +52,41 @@ public class MinimumPathSum {
 	public static void main(String[] args) {
 		MinimumPathSum path = new MinimumPathSum();
 		int[] row1 = {1,2};
-		int[] row2 = {1,3};
+		int[] row2 = {1,1};
 //		int[] row3 = {4,2,1};
-		int[][] grid = {row1};
-		System.out.println(path.minPathSum(grid));
+		int[][] grid = {row1, row2};
+		method(grid);
 
 	}
+
+	public static void method(int[][] grid) {
+
+		int[][] dp = new int[grid.length][grid[0].length]; // 定义状态公式，每个值记录当前最短路径
+		dp[0][0] = grid[0][0];
+		for (int i = 1; i < grid.length; i++) {
+			dp[i][0] = dp[i - 1][0] + grid[i][0];
+		}
+		for (int j = 1; j < grid[0].length; j++) {
+			dp[0][j] = dp[0][j - 1] + grid[0][j];
+		}
+		for (int i = 1; i < grid.length; i++) {
+			for (int j = 1; j < grid[i].length; j++) {
+				dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+			}
+		}
+
+		System.out.println("Min path: "+ dp[grid.length-1][grid[0].length-1]);
+	}
+
+
+
+
+
+
+
+
+
+
+
 
 }

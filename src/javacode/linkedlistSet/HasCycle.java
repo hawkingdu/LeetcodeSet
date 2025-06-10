@@ -9,15 +9,15 @@ import javacode.entity.ListNode;
 public class HasCycle {
 
 	public static boolean hasCycle(ListNode head){
-		if(head == null || head.next==null || head.next.next==null) return false;
-		ListNode p1 = head;
-		ListNode p2 = head.next.next;
-		while(p1!=null && p2 !=null && p2.next !=null){
-			if(p1==p2){
+		if(head == null || head.next==null) return false;
+		ListNode slow = head, fast = head;
+
+		while(fast !=null && fast.next!=null){
+			slow = slow.next;
+			fast = fast.next.next;
+			if (slow == fast) {
 				return true;
 			}
-			p1 = p1.next;
-			p2 = p2.next.next;
 		}
 		return false;
 	}

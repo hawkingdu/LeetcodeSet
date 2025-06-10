@@ -6,6 +6,9 @@ import javacode.leetcodeUtil.TreeNodeUtil;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 111. Minimum Depth of Binary Tree
+ */
 public class MinimumDepthOfBinaryTree {
 
     public int minDepth(TreeNode root) {
