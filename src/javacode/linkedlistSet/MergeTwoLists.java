@@ -2,42 +2,35 @@ package javacode.linkedlistSet;
 
 import javacode.entity.ListNode;
 
+/**
+ * 21. Merge Two Sorted Lists
+ */
 public class MergeTwoLists {
 
-	public static ListNode mergeTwoLists(ListNode<Integer> l1, ListNode<Integer> l2){
-		if(l1==null && l2==null) return null;
-		ListNode newList = new ListNode(0);
-		ListNode head = newList;
-		while( l1!=null && l2!=null ){
-			if( l1.val <= l2.val){
-				newList.val = l1.val;
-				l1 = l1.next;
+	public static ListNode mergeTwoLists(ListNode<Integer> list1, ListNode<Integer> list2){
+		ListNode<Integer> dummy = new ListNode<>(), p = dummy; //虚拟头节点 利于处理
+		ListNode<Integer> p1 = list1, p2 = list2; //双指针
+		while (p1 != null && p2 != null) {
+			if (p1.val <= p2.val) {
+				p.next = p1;
+				p1 = p1.next;
 			} else {
-				newList.val = l2.val;
-				l2 = l2.next;
+				dummy.next = p2;
+				p2 = p2.next;
 			}
-			if(l1!=null || l2!=null){
-				newList.next = new ListNode(0);
-				newList = newList.next;
-			}
+			dummy = dummy.next;
 		}
-		while (l1!= null){
-			newList.val = l1.val;
-			l1 = l1.next;
-			if(l1!=null){
-				newList.next = new ListNode(0);
-				newList = newList.next;
-			}
+		while (p1 != null) {
+			dummy.next=p1;
+			p1 = p1.next;
+			dummy = dummy.next;
 		}
-		while (l2!= null){
-			newList.val = l2.val;
-			l2 = l2.next;
-			if(l2!=null){
-				newList.next = new ListNode(0);
-				newList = newList.next;
-			}
+		while (p2 != null) {
+			dummy.next=p2;
+			p2 = p2.next;
+			dummy = dummy.next;
 		}
-		return head;
+		return p.next;
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

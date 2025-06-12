@@ -16,7 +16,7 @@ public class ListNode<T> {
 		ListNode head = this;
 		String s = null;
 		while(head!=null){
-			s = next.val +"->";
+			s = head.val +"->";
 			head = head.next;
 		}
 		return "Linked List: " + s;
